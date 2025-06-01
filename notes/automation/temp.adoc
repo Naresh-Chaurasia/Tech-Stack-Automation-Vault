@@ -1,0 +1,51 @@
+== Jackson Support in Spring Boot
+
+Spring Boot has *built-in support* for Jackson — no need to add the dependency manually in most cases.
+
+==== How It Works
+
+* Spring Boot includes Jackson automatically through the `spring-boot-starter-web` dependency.
+* It uses Jackson's `ObjectMapper`:
+** To serialize Java objects into JSON (for responses).
+** To deserialize JSON into Java objects (for requests).
+
+==== Example REST Controller
+
+[source,java]
+----
+@RestController
+public class BookController {
+
+    @PostMapping("/books")
+    public String createBook(@RequestBody Book book) {
+        return "Book received: " + book.getTitle();
+    }
+
+    @GetMapping("/book")
+    public Book getBook() {
+        Book book = new Book();
+        book.setTitle("The Alchemist");
+        book.setAuthor("Paulo Coelho");
+        book.setPrice(9.99);
+        return book; // Automatically converted to JSON by Jackson
+    }
+}
+----
+
+* `@RequestBody` → Jackson deserializes JSON to `Book` object.
+* Return value → Jackson serializes `Book` object to JSON.
+
+==== Do You Need to Add Jackson Manually?
+
+No. If you use the following dependency:
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+----
+
+Then Jackson (`jackson-databind`) is included by default.
+
