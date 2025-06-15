@@ -101,9 +101,10 @@ loginButton.click();
 
 ################
 
+== CSS Selectors
+
 CSS Selectors in Selenium are used to locate elements based on their styles, attributes, or hierarchical structure.
 
-== Why Use CSS Selectors?
 
 * Faster than XPath in most browsers.
 * More readable and concise.
@@ -127,7 +128,7 @@ WebElement loginButton = driver.findElement(By.cssSelector(".login-button"));
 loginButton.click();
 ----
 
-*3. Select by Tag and Attribute*
+✔ *3. Select by Tag and Attribute*
 
 *CSS Selector:* `tagName[attribute='value']`
 [source,java]
@@ -136,76 +137,7 @@ WebElement emailField = driver.findElement(By.cssSelector("input[type='email']")
 emailField.sendKeys("test@example.com");
 ----
 
-*4. Select by Tag, Class and Attribute*
-
-*CSS Selector:* `tag.class[attribute='value']`
-[source,java]
-----
-WebElement submitButton = driver.findElement(By.cssSelector("button.submit[type='submit']"));
-submitButton.click();
-----
-
-*5. Select by Multiple Attributes
-*CSS Selector:* `tag[attribute1='value'][attribute2='value']`
-[source,java]
-----
-WebElement userInput = driver.findElement(By.cssSelector("input[type='text'][name='username']"));
-userInput.sendKeys("testuser");
-----
-
-== Advanced CSS Selectors
-
-*6. Child Selector (`>`)
-*CSS Selector:* `parent > child`
-Selects *direct* children only.
-[source,java]
-----
-WebElement firstInput = driver.findElement(By.cssSelector("form > input"));
-firstInput.sendKeys("Form Input");
-----
-
-*7. Descendant Selector (space)
-*CSS Selector:* `ancestor descendant`
-Selects all matching descendants.
-[source,java]
-----
-WebElement inputInsideDiv = driver.findElement(By.cssSelector("div input"));
-inputInsideDiv.sendKeys("Descendant Input");
-----
-
-*8. Starts With (`^=`)
-*CSS Selector:* `[attribute^='value']`
-Matches when the attribute starts with given value.
-[source,java]
-----
-WebElement startsWithInput = driver.findElement(By.cssSelector("input[name^='user']"));
-startsWithInput.sendKeys("user123");
-----
-
-*9. Ends With (`$=`)
-*CSS Selector:* `[attribute$='value']`
-Matches when the attribute ends with given value.
-[source,java]
-----
-WebElement endsWithInput = driver.findElement(By.cssSelector("input[name$='name']"));
-endsWithInput.sendKeys("lastname");
-----
-
-*10. Contains (`*=`)
-*CSS Selector:* `[attribute*='value']`
-Matches when the attribute contains the value.
-[source,java]
-----
-WebElement containsInput = driver.findElement(By.cssSelector("input[name*='serna']"));
-containsInput.sendKeys("username123");
-----
-
-== Tips for Using CSS Selectors
-* Use browser's DevTools to copy CSS selector.
-* Combine attributes and classes for accurate selection.
-* Prefer `By.cssSelector()` over XPath for better speed and readability.
-
-== Practice Assignment
+*Practice Assignment*
 
 Given the HTML:
 [source,html]
@@ -235,11 +167,6 @@ WebElement loginBtn = driver.findElement(By.cssSelector(".login-btn"));
 +
 [source,java]
 ----
-WebElement userInput = driver.findElement(By.cssSelector("input[name^='us']"));
+WebElement userInput = driver.findElement(By.cssSelector("input[name='user']"));
 ----
 
-== Summary
-
-* CSS Selectors provide a concise and powerful way to locate elements.
-* Mastering various selector patterns helps write robust Selenium scripts.
-* Use combinations of tag, class, and attributes for best accuracy.

@@ -1,0 +1,143 @@
+= Selenium Notes
+:toc: right
+:toclevels:5
+:sectnums:
+
+
+== Why Use XPath?
+
+XPath (XML Path Language) is a powerful way to navigate and locate elements in an HTML or XML document. Selenium supports XPath for locating web elements, especially when IDs or class names are not available.
+
+
+* Allows traversal of the DOM both forward and backward.
+* Useful when elements don't have unique `id` or `class`.
+* Supports conditional logic and partial text matches.
+
+---
+
+=== Types of XPath
+
+*1. Absolute XPath*
+
+*Starts from the root of the document.*
+
+Example:
+[source,java]
+----
+WebElement inputField = driver.findElement(By.xpath("/html/body/div/form/input[1]"));
+inputField.sendKeys("Admin");
+----
+
+NOTE: Not recommended because it's brittle and changes if the HTML structure changes.
+
+*2. Relative XPath*
+
+*Starts from the middle of the HTML DOM.*
+
+Example:
+[source,java]
+----
+WebElement inputField = driver.findElement(By.xpath("//input[@id='username']"));
+inputField.sendKeys("Admin");
+----
+
+=== XPath Syntax Basics
+
+*3. Attribute Matching*
+
+*Find element with matching attribute value.*
+[source,java]
+----
+WebElement element = driver.findElement(By.xpath("//input[@type='email']"));
+element.sendKeys("test@example.com");
+----
+
+*4. Multiple Attribute Matching*
+
+[source,java]
+----
+WebElement element = driver.findElement(By.xpath("//input[@type='text' and @name='username']"));
+element.sendKeys("user123");
+----
+
+*5. Contains Function*
+
+*Used for partial matching of attribute or text.*
+[source,java]
+----
+WebElement element = driver.findElement(By.xpath("//input[contains(@name, 'user')]"));
+element.sendKeys("partial");
+----
+
+*6. Starts-With Function*
+
+[source,java]
+----
+WebElement element = driver.findElement(By.xpath("//input[starts-with(@name, 'user')]"));
+element.sendKeys("start");
+----
+
+*7. Text() Function*
+
+*Used to match exact text content of an element.*
+[source,java]
+----
+WebElement element = driver.findElement(By.xpath("//button[text()='Login']"));
+element.click();
+----
+
+*8. Using OR and AND*
+
+[source,java]
+----
+WebElement element = driver.findElement(By.xpath("//input[@id='email' or @name='email']"));
+element.sendKeys("either");
+----
+
+*9. Using Indexes*
+
+*Select the second input element.*
+[source,java]
+----
+WebElement secondInput = driver.findElement(By.xpath("(//input)[2]"));
+----
+
+=== Sample HTML for Practice
+[source,html]
+----
+<form>
+  <input id="username" type="text" name="user">
+  <input id="password" type="password" name="pass">
+  <button>Login</button>
+</form>
+----
+
+=== Practice Assignment
+
+Write XPath to:
+1. Select the input field with id `username`
++
+[source,java]
+----
+WebElement user = driver.findElement(By.xpath("//input[@id='username']"));
+----
+
+2. Select input element where name contains `user`
++
+[source,java]
+----
+WebElement input = driver.findElement(By.xpath("//input[contains(@name, 'user')]"));
+----
+
+3. Select the Login button by text
++
+[source,java]
+----
+WebElement loginBtn = driver.findElement(By.xpath("//button[text()='Login']"));
+----
+
+=== Summary
+
+* XPath is powerful for locating elements when IDs/classes are dynamic or unavailable.
+* Relative XPath is more flexible than absolute XPath.
+* Use functions like `contains()`, `starts-with()`, and `text()` for dynamic selections.
