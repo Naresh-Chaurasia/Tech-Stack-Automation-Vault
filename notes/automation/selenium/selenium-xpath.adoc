@@ -1,10 +1,10 @@
-= Selenium Notes
+= Selenium XPath
 :toc: right
 :toclevels:5
 :sectnums:
 
 
-== Why Use XPath?
+== ✔️ Why Use XPath?
 
 XPath (XML Path Language) is a powerful way to navigate and locate elements in an HTML or XML document. Selenium supports XPath for locating web elements, especially when IDs or class names are not available.
 

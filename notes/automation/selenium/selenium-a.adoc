@@ -5,20 +5,41 @@
 
 == Selenium WebDriver
 
+=== WebDriver Installation
+
 - Java 17
-- Java Selenium (Starting with 4.6, it should happend automatically)
+- Chrome Java Selenium  (Starting with 4.6, it should happend automatically)
+
+
+----
+brew install geckodriver
+
+
+----
+
+=== WebDriver Architecture
+
+image::webdriver2.png[]
+
+---
 
 image::webdriver.png[]
+
+---
+
+
 
 == References
 
 - https://googlechromelabs.github.io/chrome-for-testing/#stable
-- /Users/nareshchaurasia/.cache/selenium/chromedriver
+- ✔️ /Users/nareshchaurasia/.cache/selenium/chromedriver
 - https://www.selenium.dev/documentation/webdriver/
 - https://www.browserstack.com/guide/architecture-of-selenium-webdriver
 - https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/WebDriver.html
+- ✔️ https://www.javadoc.io/static/org.seleniumhq.selenium/selenium-api/4.8.0/index.html?org/openqa/selenium/WebDriver.html
+- https://github.com/SeleniumHQ/selenium/wiki/
 
-== WebElement
+== ✔️ WebElement
 
 In Selenium, every item you interact with on a webpage (like buttons, text boxes, links, etc.) is called a *WebElement*.
 
@@ -65,14 +86,14 @@ To automate any interaction with a webpage, you first need to *locate* the eleme
 
 Before using any WebElement method, you must first *locate* the element using:
 
-* `By.id`
-* `By.name`
-* `By.className`
-* `By.tagName`
-* `By.linkText`
-* `By.partialLinkText`
-* `By.xpath`
-* `By.cssSelector`
+* ✔️ `By.id`
+* ✔️ `By.name`
+* ✔️ `By.className`
+* ✔️ `By.tagName`
+* ✔️ `By.linkText`
+* ✔️️ `By.partialLinkText`
+* ✔️ `By.xpath`
+* ✔️ `By.cssSelector`
 
 *Example: Login Form*
 
@@ -101,7 +122,7 @@ loginButton.click();
 
 ################
 
-== CSS Selectors
+== ✔️ CSS Selectors
 
 CSS Selectors in Selenium are used to locate elements based on their styles, attributes, or hierarchical structure.
 
@@ -169,4 +190,24 @@ WebElement loginBtn = driver.findElement(By.cssSelector(".login-btn"));
 ----
 WebElement userInput = driver.findElement(By.cssSelector("input[name='user']"));
 ----
+
+##############################################
+
+== POM
+
+Page Object Model (POM) is a design pattern in Selenium that creates an object repository for web elements. It helps improve code readability, reusability, and maintainability.
+
+
+* Reduces code duplication
+* Separates test logic from UI locators
+* Makes maintenance easier if UI changes
+* Enhances test scalability
+
+---
+
+image::pom.png[]
+
+---
+
+
 

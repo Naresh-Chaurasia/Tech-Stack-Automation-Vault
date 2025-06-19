@@ -1,0 +1,119 @@
+= Selenium Utils
+:toc: right
+:toclevels:5
+:sectnums:
+
+== Apache POI
+
+Apache POI is a powerful Java library used to read and write Microsoft Office documents, including Excel files (`.xls` and `.xlsx`).
+
+*Maven Dependency*
+
+Add the following dependencies to your `pom.xml`:
+
+[source,xml]
+----
+<dependencies>
+  <!-- Apache POI for Excel -->
+  <dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>5.2.3</version>
+  </dependency>
+  <dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+    <version>5.2.3</version>
+  </dependency>
+</dependencies>
+----
+
+*Sample Excel File*
+
+Suppose we have an Excel file named `students.xlsx` with the following data in `Sheet1`:
+
+[cols="1,1,1", options="header"]
+|===
+|ID |Name |Grade
+|101 |Alice |A
+|102 |Bob   |B
+|103 |Charlie |A+
+|===
+
+*Java Code to Read Excel*
+
+[source,java]
+----
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
+public class ExcelReader {
+    public static void main(String[] args) throws IOException {
+        String filePath = "students.xlsx";
+
+        // Open the Excel file
+        FileInputStream fis = new FileInputStream(filePath);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0);
+
+        // Loop through rows and columns
+        for (Row row : sheet) {
+            for (Cell cell : row) {
+                // Get cell value based on type
+                switch (cell.getCellType()) {
+                    case STRING:
+                        System.out.print(cell.getStringCellValue() + "\t");
+                        break;
+                    case NUMERIC:
+                        System.out.print(cell.getNumericCellValue() + "\t");
+                        break;
+                    default:
+                        System.out.print("Unknown\t");
+                }
+            }
+            System.out.println();
+        }
+
+        workbook.close();
+        fis.close();
+    }
+}
+----
+
+*Output*
+
+[source,text]
+----
+ID	Name	Grade
+101.0	Alice	A
+102.0	Bob	B
+103.0	Charlie	A+
+----
+
+*Notes*
+
+* Use `XSSFWorkbook` for `.xlsx` files and `HSSFWorkbook` for `.xls`.
+* You can also get a cell directly:
++
+[source,java]
+----
+Row row = sheet.getRow(1);
+Cell cell = row.getCell(1);
+System.out.println(cell.getStringCellValue());
+----
+
+*Common Use Cases*
+
+* Reading test data for Selenium automation
+* Migrating data from Excel to databases
+* Validating Excel content in reports
+
+*Summary*
+
+* Apache POI allows easy read/write operations on Excel files.
+* Loop through rows and cells using `Sheet`, `Row`, and `Cell` classes.
+* Use `getCellType()` to identify and safely read data types.
+
