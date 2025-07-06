@@ -1,0 +1,60 @@
+= Selenium Projects
+:toc: right
+:toclevels:5
+:sectnums:
+
+
+== Selenium Project
+
+=== spring-petclinic
+
+* http://localhost:8080/
+
+----
+cd /Users/nareshchaurasia/nc/Tech-Stack-Projects/spring-petclinic
+mvn spring-boot:run
+----
+
+##############################################
+
+=== PetCare
+
+* Open the project in Visual Studio Code, and access the application using live server plugin.
+
+##############################################
+
+=== Java 8 API Page
+
+* https://docs.oracle.com/javase/8/docs/api/index.html?java/lang/String.html
+
+---
+
+1. Verify that the Java 8 API documentation homepage loads successfully and the title contains "String (Java Platform SE 8 )".
+
+2. Switch to the `packageListFrame` and verify that the `java.lang` package link is visible.
+
+3. Click on the `java.lang` link in the `packageListFrame`.
+
+4. Switch to the `packageFrame` and verify that the `String` class is listed.
+
+5. Click on the `String` class in the `packageFrame`.
+
+6. Switch to the `classFrame` and verify that the heading displays "Class String".
+
+7. Verify that the method summary section is visible in the `classFrame`.
+
+8. Locate the method `substring(int, int)` in the method summary table and click on it.
+
+9. Verify that the page navigates to the anchor for the `substring(int, int)` method description.
+
+10. Count and log the number of public methods listed under the method summary.
+
+11. In `packageListFrame`, click on the `java.util` package, then in `packageFrame`, click on `ArrayList`.
+
+12. In the `classFrame`, verify that the "All Implemented Interfaces" section is present for the `ArrayList` class.
+
+13. Scroll to the bottom of the `classFrame` and verify that footer elements like copyright are visible.
+
+14. Click on the `Deprecated` link in the top navigation menu and verify that the deprecated API page loads.
+
+15. Verify the presence of footer content in the `classFrame` indicating Oracle copyright.

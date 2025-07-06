@@ -1,51 +1,35 @@
-== Jackson Support in Spring Boot
+HTML5
 
-Spring Boot has *built-in support* for Jackson — no need to add the dependency manually in most cases.
+CSS3
 
-==== How It Works
+JavaScript
 
-* Spring Boot includes Jackson automatically through the `spring-boot-starter-web` dependency.
-* It uses Jackson's `ObjectMapper`:
-** To serialize Java objects into JSON (for responses).
-** To deserialize JSON into Java objects (for requests).
+Bootstrap 5
 
-==== Example REST Controller
+jQuery
 
-[source,java]
-----
-@RestController
-public class BookController {
+ANSI SQL Using MySQL
 
-    @PostMapping("/books")
-    public String createBook(@RequestBody Book book) {
-        return "Book received: " + book.getTitle();
-    }
+Core Java (v21)
 
-    @GetMapping("/book")
-    public Book getBook() {
-        Book book = new Book();
-        book.setTitle("The Alchemist");
-        book.setAuthor("Paulo Coelho");
-        book.setPrice(9.99);
-        return book; // Automatically converted to JSON by Jackson
-    }
-}
-----
+Agile Methodology
 
-* `@RequestBody` → Jackson deserializes JSON to `Book` object.
-* Return value → Jackson serializes `Book` object to JSON.
+Design Principles
 
-==== Do You Need to Add Jackson Manually?
+Spring with Maven
 
-No. If you use the following dependency:
+TDD using JUnit and Mockito
 
-[source,xml]
-----
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-web</artifactId>
-</dependency>
-----
+Logging, and Continuous Code Quality
 
-Then Jackson (`jackson-databind`) is included by default.
+GIT
+
+Spring Data JPA with Spring Boot, Hibernate
+
+Spring REST with Spring Boot 3
+
+Microservices with Spring Boot 3 and Spring Cloud
+
+React (v18)
+
 
