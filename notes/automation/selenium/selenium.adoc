@@ -200,6 +200,88 @@ image::pom.png[]
 
 ##############################################
 
+
+== 1. Implicit Wait
+
+Implicit wait tells WebDriver to poll the DOM for a certain amount of time when trying to find an element, **before throwing an exception**.
+
+=== Example
+
+[source,java]
+----
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+import java.util.concurrent.TimeUnit;
+
+public class ImplicitWaitExample {
+    public static void main(String[] args) {
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        // Set implicit wait
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        driver.get("https://example.com");
+
+        // This will wait up to 10 seconds before throwing NoSuchElementException
+        WebElement element = driver.findElement(By.id("delayedElement"));
+        element.click();
+
+        driver.quit();
+    }
+}
+----
+
+== 2. Explicit Wait
+
+Explicit wait lets you wait for a **specific condition** to occur before continuing, like element being visible or clickable.
+
+=== Example
+
+[source,java]
+----
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class ExplicitWaitExample {
+    public static void main(String[] args) {
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        driver.get("https://example.com");
+
+        // Create explicit wait
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+
+        // Wait until the element is visible
+        WebElement element = wait.until(
+            ExpectedConditions.visibilityOfElementLocated(By.id("delayedElement"))
+        );
+
+        element.click();
+
+        driver.quit();
+    }
+}
+----
+
+== Summary
+
+| Wait Type       | Scope                   | Applies To                      | Exception Handling         |
+|------------------|--------------------------|----------------------------------|-----------------------------|
+| Implicit Wait    | Global for driver session | All findElement/findElements     | Waits and retries silently |
+| Explicit Wait    | Specific element/condition | Targeted use cases (visibility, clickable) | Fails after timeout        |
+
+
+
+##############################################
+
 == References
 
 - https://googlechromelabs.github.io/chrome-for-testing/#stable
