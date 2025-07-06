@@ -201,7 +201,7 @@ image::pom.png[]
 ##############################################
 
 
-== 1. Implicit Wait
+== 1. Wait
 
 Implicit wait tells WebDriver to poll the DOM for a certain amount of time when trying to find an element, **before throwing an exception**.
 
@@ -273,10 +273,13 @@ public class ExplicitWaitExample {
 
 == Summary
 
-| Wait Type       | Scope                   | Applies To                      | Exception Handling         |
-|------------------|--------------------------|----------------------------------|-----------------------------|
-| Implicit Wait    | Global for driver session | All findElement/findElements     | Waits and retries silently |
-| Explicit Wait    | Specific element/condition | Targeted use cases (visibility, clickable) | Fails after timeout        |
+[options="header"]
+|===
+| Wait Type       | Scope                    | Applies To                        | Exception Handling
+
+| Implicit Wait   | Global for driver session | All `findElement` / `findElements` | Waits and retries silently
+| Explicit Wait   | Specific element/condition | Targeted use cases (e.g., visibility, clickable) | Throws exception after timeout
+|===
 
 
 
