@@ -16,4 +16,60 @@ CREATE TABLE users (
 
 ----
 
+import java.sql.*;
+
+public class JdbcCrudExample {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/your_db_name";
+        String user = "your_username";
+        String password = "your_password";
+
+        Connection conn = null;
+        try {
+            // Load MySQL JDBC Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+
+            // CREATE
+            String insertSql = "INSERT INTO users (name, email) VALUES (?, ?)";
+            PreparedStatement insertStmt = conn.prepareStatement(insertSql);
+            insertStmt.setString(1, "Alice");
+            insertStmt.setString(2, "alice@example.com");
+            insertStmt.executeUpdate();
+            System.out.println("Inserted user Alice.");
+
+            // READ
+            String selectSql = "SELECT * FROM users";
+            Statement selectStmt = conn.createStatement();
+            ResultSet rs = selectStmt.executeQuery(selectSql);
+            System.out.println("User List:");
+            while (rs.next()) {
+                System.out.println(rs.getInt("id") + ", " +
+                                   rs.getString("name") + ", " +
+                                   rs.getString("email"));
+            }
+
+            // UPDATE
+            String updateSql = "UPDATE users SET email=? WHERE name=?";
+            PreparedStatement updateStmt = conn.prepareStatement(updateSql);
+            updateStmt.setString(1, "alice@newdomain.com");
+            updateStmt.setString(2, "Alice");
+            updateStmt.executeUpdate();
+            System.out.println("Updated Alice's email.");
+
+            // DELETE
+            String deleteSql = "DELETE FROM users WHERE name=?";
+            PreparedStatement deleteStmt = conn.prepareStatement(deleteSql);
+            deleteStmt.setString(1, "Alice");
+            deleteStmt.executeUpdate();
+            System.out.println("Deleted user Alice.");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try { if (conn != null) conn.close(); } catch (Exception e) { /* ignore */ }
+        }
+    }
+}
+
 ----
