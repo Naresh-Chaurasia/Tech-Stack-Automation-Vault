@@ -1,35 +1,11 @@
-HTML5
-
-CSS3
-
-JavaScript
-
-Bootstrap 5
-
-jQuery
-
-ANSI SQL Using MySQL
-
-Core Java (v21)
-
-Agile Methodology
-
-Design Principles
-
-Spring with Maven
-
-TDD using JUnit and Mockito
-
-Logging, and Continuous Code Quality
-
-GIT
-
-Spring Data JPA with Spring Boot, Hibernate
-
-Spring REST with Spring Boot 3
-
-Microservices with Spring Boot 3 and Spring Cloud
-
-React (v18)
-
-
+1. Basic side to side
+2. Turns both sides
+3. Leading for turns
+4. Basic forward back
+5. Double hand turn & back
+6. Double hand turn flick
+7. Wrap in wrap out
+8. Wrap in wave up wave down
+9. Hammer lock
+10. 360 degree
+11. 180 and cross over
