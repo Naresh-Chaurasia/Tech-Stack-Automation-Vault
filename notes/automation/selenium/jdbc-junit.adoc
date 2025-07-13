@@ -1,0 +1,103 @@
+= JDBC Junit
+:toc: right
+:toclevels:5
+:sectnums:
+
+
+== Sample MySQL Tables
+
+*1. users*
+
+```sql
+CREATE TABLE users (
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(100),
+email VARCHAR(100),
+status VARCHAR(20)
+);
+
+INSERT INTO users (name, email, status) VALUES
+('Alice', 'alice@example.com', 'active'),
+('Bob', 'bob@example.com', 'inactive'),
+('Charlie', 'charlie@example.com', 'active');
+````
+
+*2. products*
+
+```sql
+CREATE TABLE products (
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(100),
+price DECIMAL(10,2),
+stock INT
+);
+
+INSERT INTO products (name, price, stock) VALUES
+('Laptop', 800.00, 10),
+('Mouse', 25.00, 100),
+('Keyboard', 50.00, 50);
+```
+
+*3. orders*
+
+```sql
+CREATE TABLE orders (
+id INT PRIMARY KEY AUTO_INCREMENT,
+user_id INT,
+product_id INT,
+quantity INT,
+order_date DATE,
+FOREIGN KEY (user_id) REFERENCES users(id),
+FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+INSERT INTO orders (user_id, product_id, quantity, order_date) VALUES
+(1, 1, 1, '2024-08-01'),
+(2, 2, 2, '2024-08-03'),
+(3, 3, 1, '2024-08-04');
+```
+
+
+== Use Case Scenarios
+
+Implement the below Scenarios using Java + Junit + JDBC
+
+*1. Verify user table is not empty*
+
+---
+
+*2. Fetch all active users*
+
+---
+
+*3. Verify product price is within expected range*
+
+---
+
+*4. Insert a new user and verify insertion*
+
+---
+
+*5. Check total stock of products > 0*
+
+---
+
+*6. Validate user has placed at least one order*
+
+---
+
+*7. Get the latest order date*
+
+---
+
+*8. Update product stock and verify*
+
+---
+
+*9. Delete a user and check if removed*
+
+
+---
+
+*10. Join users and orders and verify joined data*
+
